@@ -89,14 +89,6 @@ class Pyroon():
             
             roo_link = comment_soup.select_one('a')
             
-            if roo_link == None:
-                roo['name'] = 'Not a roo'
-                break
-            else:
-                roo['name'] = roo_link.get_text()
-            
-            print roo['name']
-            
             if last_roo:
                 roo_link_id = '{0}>{1}'.format(last_roo['id'], roo['id'])
                 
@@ -105,6 +97,14 @@ class Pyroon():
                     'source' : last_roo['id'],
                     'target' : roo['id'],
                 }
+            
+            if roo_link == None:
+                roo['name'] = 'Not a roo'
+                break
+            else:
+                roo['name'] = roo_link.get_text()
+            
+            print roo['name']
             
             comment_url = roo_link['href']
             
