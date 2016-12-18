@@ -103,8 +103,7 @@ class Pyroon():
                 break
             else:
                 roo['name'] = roo_link.get_text()
-            
-            print roo['name']
+                print roo['name']
             
             comment_url = roo_link['href']
             
