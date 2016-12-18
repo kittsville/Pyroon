@@ -36,6 +36,9 @@ class Pyroon():
                 )
             )
         
+        if saved_graph['format'] != 'pyroon':
+            raise ValueError("Can't load incompatible graph format {0}").format(saved_graph['format'])
+        
         if merge:
             self.roos.update(saved_graph['roos'])
             self.roo_links.update(saved_graph['roo_links'])
@@ -113,6 +116,7 @@ class Pyroon():
         """
         output = {
             'pyroon_version' : self.version,
+            'format'         : 'pyroon',
             'roos'           : self.roos,
             'roo_links'      : self.roo_links,
         }
@@ -139,6 +143,7 @@ class Pyroon():
         
         output = {
             'pyroon_version' : self.version,
+            'format'         : 'cytoscape',
             'graph'          : graph
         }
         
