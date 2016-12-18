@@ -10,4 +10,4 @@ The Switch-a-roo graphing library
 """
 
 # Import everything here you want available outside of the centi package
-from .main import pyroon
+from .main import Pyroon
