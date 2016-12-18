@@ -1,0 +1,33 @@
+---
+permalink: /
+---
+<html>
+<head>
+	<style>
+		#graph {
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+		}
+		
+		p {
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<p id="loading">Loading. This will probably cause your browser to freeze</p>
+	<div id="graph"></div>
+</div>
+<div>
+	<script src="{{ site.url }}/assets/cytoscape.min.js" type="text/javascript"></script>
+	<script src="https://cdn.rawgit.com/cpettitt/dagre/v0.7.4/dist/dagre.min.js"></script>
+	<script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-dagre/1.1.2/cytoscape-dagre.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="{{ site.url }}/assets/graph.js" type="text/javascript"></script>
+</div>
+</body>
+</html>

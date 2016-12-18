@@ -6,6 +6,9 @@ __pycache__/
 # Don't commit configuration file!
 *.ini
 
+# Don't commit Jekyll site!
+_site/
+
 # C extensions
 *.so
 

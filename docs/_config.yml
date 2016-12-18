@@ -1,0 +1,7 @@
+permalink: /:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+sass:
+  style: compressed
