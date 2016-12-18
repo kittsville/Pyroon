@@ -69,6 +69,15 @@ class Pyroon():
             else:
                 break
             
+            if last_roo:
+                roo_link_id = '{0}>{1}'.format(last_roo['id'], comment_id)
+                
+                self.roo_links[roo_link_id] = {
+                    'id'     : roo_link_id,
+                    'source' : last_roo['id'],
+                    'target' : comment_id,
+                }
+            
             # If comment ID is already stored then job done!
             if comment_id in self.roos:
                 break
@@ -88,15 +97,6 @@ class Pyroon():
             self.roos[comment_id] = roo
             
             roo_link = comment_soup.select_one('a')
-            
-            if last_roo:
-                roo_link_id = '{0}>{1}'.format(last_roo['id'], roo['id'])
-                
-                self.roo_links[roo_link_id] = {
-                    'id'     : roo_link_id,
-                    'source' : last_roo['id'],
-                    'target' : roo['id'],
-                }
             
             if roo_link == None:
                 roo['name'] = 'Not a roo'
