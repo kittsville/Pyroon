@@ -128,3 +128,19 @@ class Pyroon():
             roo_link_count,
             file_name
         )
+    def exportCytoscapeGraph(self, file_name):
+        """"
+        Exports roo graph in format compatible with Cytoscape.js
+        """
+        graph = []
+        
+        graph += [{'data': roo} for _, roo in self.roos.iteritems()]
+        graph += [{'data': roo_link} for _, roo_link in self.roo_links.iteritems()]
+        
+        output = {
+            'pyroon_version' : self.version,
+            'graph'          : graph
+        }
+        
+        with open(file_name, 'w+') as output_file:
+            json.dump(output, output_file)
