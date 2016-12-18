@@ -1,5 +1,6 @@
 permalink: /:title/
-
+creator: Kit Maywood
+twitter: kittsville
 markdown: kramdown
 kramdown:
   input: GFM
