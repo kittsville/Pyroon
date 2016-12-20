@@ -55,13 +55,17 @@ class Pyroon():
             file_name
         )
     
-    def addRoo(self, comment_url):
+    def addRoo(self, comment_url, limit=float('inf')):
         """
         Adds chain of connected roos
         """
         last_roo = None
         
-        while True:
+        roos = 0
+        
+        while roos < limit:
+            roos += 1
+            
             comment_id_match = COMMENT_ID_RE.search(comment_url)
             
             if comment_id_match:
