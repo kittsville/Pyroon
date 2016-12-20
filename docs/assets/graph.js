@@ -22,5 +22,13 @@ $.getJSON("/graph.json", function(json) {
 		]
 	});
 	
+	cy.on('tap', 'node', function(event) {	
+		window.open(this.data('url'));
+	});
+	
+	cy.on('tap', 'edge', function(event) {
+		window.open(this.data('url'));
+	});
+	
 	document.getElementById('wrap').removeChild(document.getElementById('loading'));
 });
