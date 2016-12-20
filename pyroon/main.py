@@ -81,6 +81,7 @@ class Pyroon():
                     'id'     : roo_link_id,
                     'source' : last_roo['id'],
                     'target' : comment_id,
+                    'url'    : comment_url,
                 }
             
             # If comment ID is already stored then job done!
@@ -99,6 +100,7 @@ class Pyroon():
             roo = {
                 'id'   : comment_id,
                 'text' : comment_text,
+                'url'  : 'https://reddit.com' + comment.permalink(fast=True),
             }
             
             self.roos[comment_id] = roo
