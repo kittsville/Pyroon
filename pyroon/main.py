@@ -10,6 +10,7 @@ import praw
 import re
 import json
 from .config import getRedditAuth
+from .helpers import getRooText
 from bs4 import BeautifulSoup
 
 COMMENT_ID_RE = re.compile('reddit\.com/r/[0-9a-z_]+/comments/[0-9a-z]{6}/[0-9a-z_]+/([0-9a-z]+)', re.I)
@@ -93,9 +94,11 @@ class Pyroon():
                 'html.parser'
             )
             
+            comment_text = comment_soup.get_text()
+            
             roo = {
                 'id'   : comment_id,
-                'text' : comment_soup.get_text(),
+                'text' : comment_text,
             }
             
             self.roos[comment_id] = roo
@@ -106,7 +109,8 @@ class Pyroon():
                 roo['name'] = 'Not a roo'
                 break
             else:
-                roo['name'] = roo_link.get_text()
+                roo['name'] = getRooText(comment_text) or 'Ah, the old Reddit switch-a-roo'
+                
                 print roo['name']
             
             comment_url = roo_link['href']
