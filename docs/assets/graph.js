@@ -16,7 +16,7 @@ $.getJSON("/graph.json", function(json) {
 			{
 				selector: 'node',
 				style: {
-					'content': 'data(text)'
+					'content': 'data(name)'
 				}
 			}
 		]
