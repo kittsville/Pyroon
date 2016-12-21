@@ -100,6 +100,7 @@ class Pyroon():
             roo = {
                 'id'   : comment_id,
                 'text' : comment_text,
+                'sub'  : str(comment.subreddit),
                 'url'  : 'https://reddit.com' + comment.permalink(fast=True),
             }
             
