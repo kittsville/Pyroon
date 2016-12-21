@@ -11,3 +11,19 @@
 p {
 	margin: auto;
 }
+
+a#fork-me {
+	width: 149px;
+	height: 149px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: 0;
+	z-index: 20;
+}
+
+@media only screen and (max-width : 767px) {
+	a#fork-me {
+		display: none;
+	}
+}
