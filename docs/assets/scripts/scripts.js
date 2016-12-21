@@ -40,11 +40,7 @@ $.getJSON("/graph.json", function(json) {
 	
 	progress.increment();
 	
-	cy.on('tap', 'node', function(event) {	
-		window.open(this.data('url'));
-	});
-	
-	cy.on('tap', 'edge', function(event) {
+	cy.on('tap', 'node, edge', function(event) {	
 		window.open(this.data('url'));
 	});
 	
