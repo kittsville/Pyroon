@@ -30,5 +30,13 @@ $.getJSON("/graph.json", function(json) {
 		window.open(this.data('url'));
 	});
 	
+	if(window.location.hash) {
+		var roo_node = cy.$(window.location.hash);
+		
+		if (roo_node) {
+			cy.fit(roo_node, 100);
+		}
+	}
+	
 	document.getElementById('wrap').removeChild(document.getElementById('loading'));
 });
