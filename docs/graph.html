@@ -4,10 +4,9 @@ title: Pyroon
 description: Pyroon is an interactive visualisation of Reddit's switch-a-roos. View the links across subreddits dating back years.
 ---
 {% assign site_image = site.url | append: '/assets/og-image.jpg' %}
+{% assign scripts_url = site.url | append: '/assets/scripts' %}
 <html>
 <head>
-	<link rel="dns-prefetch" href="//cdn.rawgit.com">
-	<link rel="dns-prefetch" href="//ajax.googleapis.com">
 	<link rel="dns-prefetch" href="//sci1.uk">
 	<link rel="dns-prefetch" href="//reddit.com">
 	
@@ -51,11 +50,11 @@ description: Pyroon is an interactive visualisation of Reddit's switch-a-roos. V
 	<div id="graph"></div>
 </div>
 <div>
-	<script src="{{ site.url }}/assets/cytoscape.min.js" type="text/javascript"></script>
-	<script src="https://cdn.rawgit.com/cpettitt/dagre/v0.7.4/dist/dagre.min.js"></script>
-	<script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-dagre/1.1.2/cytoscape-dagre.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="{{ site.url }}/assets/graph.js" type="text/javascript"></script>
+	<script src="{{ scripts_url }}/cytoscape.min.js" type="text/javascript"></script>
+	<script src="{{ scripts_url }}/jquery.min.js" type="text/javascript"></script>
+	<script src="{{ scripts_url }}/dagre.min.js" type="text/javascript"></script>
+	<script src="{{ scripts_url }}/cytoscape-dagre.js" type="text/javascript"></script>
+	<script src="{{ scripts_url }}/scripts.js" type="text/javascript"></script>
 </div>
 </body>
 </html>
