@@ -1,4 +1,20 @@
+var progress = {
+	stage  : 0,
+	stages : document.getElementById('progress').getElementsByTagName('p'),
+	increment : function() {
+		progress.stages[progress.stage].hidden = true;
+		progress.stage++;
+		if (progress.stages[progress.stage] !== undefined) {
+			progress.stages[progress.stage].hidden = false;
+		}
+	}
+}
+
+progress.increment();
+
 $.getJSON("/graph.json", function(json) {
+	progress.increment();
+	
 	cy = cytoscape({
 		
 		container: document.getElementById('graph'),
@@ -22,6 +38,8 @@ $.getJSON("/graph.json", function(json) {
 		]
 	});
 	
+	progress.increment();
+	
 	cy.on('tap', 'node', function(event) {	
 		window.open(this.data('url'));
 	});
@@ -38,5 +56,6 @@ $.getJSON("/graph.json", function(json) {
 		}
 	}
 	
-	document.getElementById('wrap').removeChild(document.getElementById('loading'));
+	delete progress;
+	document.getElementById('wrap').removeChild(document.getElementById('splash'));
 });

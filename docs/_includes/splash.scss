@@ -1,0 +1,20 @@
+#splash {
+	background: #FFF;
+	color: #000;
+	width: 100%;
+	height: 100%; 
+	z-index: 20;
+	top: 0; 
+	left: 0; 
+	position: fixed; 
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	
+	* {
+		clear: both;
+	}
+	
+	img {
+		margin: 10% auto 0px auto;
+	}
+}
