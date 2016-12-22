@@ -32,7 +32,11 @@ $.getJSON("/graph.json", function(json) {
 			{
 				selector: 'node',
 				style: {
-					'content': 'data(name)'
+					'label': 'data(name)',
+					'text-halign': 'right',
+					'text-valign': 'center',
+					'text-margin-x': '5px',
+					'background-color': '#FF5700',
 				}
 			}
 		]
