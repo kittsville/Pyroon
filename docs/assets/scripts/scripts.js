@@ -1,3 +1,8 @@
+---
+---
+{% capture graph_styles %}
+{% include graph.scss %}
+{% endcapture %}
 var progress = {
 	stage  : 0,
 	stages : document.getElementById('progress').getElementsByTagName('p'),
@@ -28,18 +33,7 @@ $.getJSON("/graph.json", function(json) {
 		wheelSensitivity: 0.1,
 
 		// so we can see the ids etc
-		style: [
-			{
-				selector: 'node',
-				style: {
-					'label': 'data(name)',
-					'text-halign': 'right',
-					'text-valign': 'center',
-					'text-margin-x': '5px',
-					'background-color': '#FF5700',
-				}
-			}
-		]
+		style: '{{ graph_styles | scssify | strip }}',
 	});
 	
 	progress.increment();
