@@ -135,6 +135,24 @@ class Pyroon():
             comment_url = hyperlink['href']
             
             previous_roo = roo
+    
+    def discardOrphanRoos(self):
+        """
+        Removes all roos with no links to or from other roos
+        """
+        linked_roos = set()
+        
+        for roo_link_id in self.roo_links:
+            roo_link = self.roo_links[roo_link_id]
+            
+            linked_roos.add(roo_link['target'])
+            linked_roos.add(roo_link['source'])
+        
+        roo_ids = self.roos.keys()
+        
+        for roo_id in roo_ids:
+            if roo_id not in linked_roos:
+                del self.roos[roo_id]
         
     def saveGraph(self, file_name):
         """
