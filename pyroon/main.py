@@ -9,6 +9,7 @@ This module performs recursively explores roos
 import praw
 import re
 import json
+import time
 from .config import getRedditAuth
 from .helpers import getRooText
 from bs4 import BeautifulSoup
@@ -126,6 +127,7 @@ class Pyroon():
         """
         output = {
             'pyroon_version' : self.version,
+            'created'        : int(time.time()),
             'format'         : 'pyroon',
             'roos'           : self.roos,
             'roo_links'      : self.roo_links,
@@ -153,6 +155,7 @@ class Pyroon():
         
         output = {
             'pyroon_version' : self.version,
+            'created'        : int(time.time()),
             'format'         : 'cytoscape',
             'graph'          : graph
         }
