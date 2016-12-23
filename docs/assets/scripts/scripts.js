@@ -17,39 +17,44 @@ var progress = {
 
 progress.increment();
 
-$.getJSON("/graph.json", function(json) {
-	progress.increment();
-	
-	cy = cytoscape({
+$.ajax({
+    cache: false,
+    url: "/graph.json",
+    dataType: "json",
+    success: function(json) {
+		progress.increment();
 		
-		container: document.getElementById('graph'),
-		
-		elements: json.graph,
+		cy = cytoscape({
+			
+			container: document.getElementById('graph'),
+			
+			elements: json.graph,
 
-		layout: {
-			name: 'dagre'
-		},
-		
-		wheelSensitivity: 0.1,
+			layout: {
+				name: 'dagre'
+			},
+			
+			wheelSensitivity: 0.1,
 
-		// so we can see the ids etc
-		style: '{{ graph_styles | scssify | strip }}',
-	});
-	
-	progress.increment();
-	
-	cy.on('tap', 'node, edge', function(event) {	
-		window.open(this.data('url'));
-	});
-	
-	if(window.location.hash) {
-		var roo_node = cy.$(window.location.hash);
+			// so we can see the ids etc
+			style: '{{ graph_styles | scssify | strip }}',
+		});
 		
-		if (roo_node) {
-			cy.fit(roo_node, 100);
+		progress.increment();
+		
+		cy.on('tap', 'node, edge', function(event) {	
+			window.open(this.data('url'));
+		});
+		
+		if(window.location.hash) {
+			var roo_node = cy.$(window.location.hash);
+			
+			if (roo_node) {
+				cy.fit(roo_node, 100);
+			}
 		}
+		
+		delete progress;
+		document.getElementById('wrap').removeChild(document.getElementById('splash'));
 	}
-	
-	delete progress;
-	document.getElementById('wrap').removeChild(document.getElementById('splash'));
 });
