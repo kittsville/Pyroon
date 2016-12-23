@@ -1,7 +1,7 @@
 ---
 ---
 {% capture graph_styles %}
-{% include graph.scss %}
+{% include graph.css %}
 {% endcapture %}
 var progress = {
 	stage  : 0,
@@ -37,7 +37,7 @@ $.ajax({
 			wheelSensitivity: 0.1,
 
 			// so we can see the ids etc
-			style: '{{ graph_styles | scssify | strip }}',
+			style: '{{ graph_styles | strip | strip_newlines }}',
 		});
 		
 		progress.increment();

@@ -11,7 +11,7 @@ import re
 import json
 import time
 from .config import getRedditAuth
-from .helpers import getRooText
+from .helpers import getRooText, recoverDeletedComment
 from bs4 import BeautifulSoup
 
 COMMENT_ID_RE = re.compile('reddit\.com/r/[0-9a-z_]+/comments/[0-9a-z]{6}/[0-9a-z_]+/([0-9a-z]+)', re.I)
@@ -78,18 +78,32 @@ class Pyroon():
             if previous_roo:
                 roo_link_id = '{0}>{1}'.format(previous_roo['id'], comment_id)
                 
-                self.roo_links[roo_link_id] = {
-                    'id'     : roo_link_id,
-                    'source' : previous_roo['id'],
-                    'target' : comment_id,
-                    'url'    : comment_url,
+                roo_link = {
+                    'id'      : roo_link_id,
+                    'source'  : previous_roo['id'],
+                    'target'  : comment_id,
+                    'url'     : comment_url,
+                    'deleted' : comment_deleted,
                 }
+                
+                self.roo_links[roo_link_id] = roo_link
             
             # If comment ID is already stored then job done!
             if comment_id in self.roos:
                 break
             
             comment = self.reddit.comment(comment_id)
+            
+            if (comment.body == '[removed]' or comment.body == '[deleted]') and comment.author is None:
+                comment_deleted     = True
+                roo_link['deleted'] = True
+                
+                comment = recoverDeletedComment(comment_id, self.reddit)
+                
+                if comment is None:
+                    break
+            else:
+                comment_deleted = False
             
             comment_soup = BeautifulSoup(
                 comment.body_html,
@@ -99,17 +113,18 @@ class Pyroon():
             comment_text = comment_soup.get_text()
             
             roo = {
-                'id'   : comment_id,
-                'text' : comment_text,
-                'sub'  : str(comment.subreddit),
-                'url'  : 'https://reddit.com' + comment.permalink(fast=True),
+                'id'      : comment_id,
+                'text'    : comment_text,
+                'sub'     : str(comment.subreddit),
+                'url'     : 'https://reddit.com' + comment.permalink(fast=True),
+                'deleted' : comment_deleted,
             }
             
             self.roos[comment_id] = roo
             
-            roo_link = comment_soup.select_one('a')
+            hyperlink = comment_soup.select_one('a')
             
-            if roo_link == None:
+            if hyperlink == None:
                 roo['name'] = 'Not a roo'
                 break
             else:
@@ -117,7 +132,7 @@ class Pyroon():
                 
                 print roo['name']
             
-            comment_url = roo_link['href']
+            comment_url = hyperlink['href']
             
             previous_roo = roo
         

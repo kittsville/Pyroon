@@ -1,0 +1,17 @@
+node {
+	label: data(name);
+	text-halign: right;
+	text-valign: center;
+	text-margin-x: 5px;
+	background-color: #FF5700;
+}
+
+node[?deleted] {
+	border-color: #FF5700;
+	background-color: #FFF;
+	border-width: 1px;
+}
+
+edge[?deleted] {
+	line-style: dashed;
+}
