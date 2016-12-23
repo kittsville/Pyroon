@@ -14,7 +14,7 @@ from .config import getRedditAuth
 from .helpers import getRooText, recoverDeletedComment
 from bs4 import BeautifulSoup
 
-COMMENT_ID_RE = re.compile('reddit\.com/r/[0-9a-z_]+/comments/[0-9a-z]{6}/.+/([0-9a-z]+)', re.I)
+COMMENT_ID_RE = re.compile('reddit\.com/r/[0-9a-z_]{3,21}/comments/[0-9a-z]+/.+/([0-9a-z]+)', re.I)
 
 class Pyroon():
     def __init__(self):
