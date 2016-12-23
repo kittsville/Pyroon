@@ -60,7 +60,7 @@ class Pyroon():
         """
         Adds chain of connected roos
         """
-        last_roo = None
+        previous_roo = None
         
         roos = 0
         
@@ -74,12 +74,12 @@ class Pyroon():
             else:
                 break
             
-            if last_roo:
-                roo_link_id = '{0}>{1}'.format(last_roo['id'], comment_id)
+            if previous_roo:
+                roo_link_id = '{0}>{1}'.format(previous_roo['id'], comment_id)
                 
                 self.roo_links[roo_link_id] = {
                     'id'     : roo_link_id,
-                    'source' : last_roo['id'],
+                    'source' : previous_roo['id'],
                     'target' : comment_id,
                     'url'    : comment_url,
                 }
@@ -118,7 +118,7 @@ class Pyroon():
             
             comment_url = roo_link['href']
             
-            last_roo = roo
+            previous_roo = roo
         
     def saveGraph(self, file_name):
         """
