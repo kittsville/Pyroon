@@ -15,7 +15,11 @@ def getRooText(comment):
     Filters non-roo junk like "Edit: Thanks for gold"
     """
     
-    return unidecode(comment.partition('\n')[0]).rstrip('.').rstrip('!')
+    majorly_filtered = unidecode(comment.partition('\n')[0])
+    
+    minorly_filtered = majorly_filtered.split('(', 1)[0].rstrip().rstrip('.').rstrip('!')
+    
+    return minorly_filtered
 
 def recoverDeletedComment(comment_id, reddit):
     """
