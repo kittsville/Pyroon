@@ -18,7 +18,7 @@ var progress = {
 progress.increment();
 
 $.ajax({
-    cache: false,
+	cache: {% if jekyll.environment == "production" %}true{% else %}false{% endif %},
     url: "/graph.json",
     dataType: "json",
     success: function(json) {
