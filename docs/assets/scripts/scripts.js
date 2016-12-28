@@ -37,6 +37,9 @@ $.ajax({
 			wheelSensitivity: 0.1,
 			
 			autoungrabify: true,
+			
+			hideLabelsOnViewport: true,
+			hideEdgesOnViewport: true,
 
 			// so we can see the ids etc
 			style: '{{ graph_styles | strip | strip_newlines }}',
