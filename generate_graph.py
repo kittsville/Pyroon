@@ -14,7 +14,7 @@ SAVE_PATH = os.path.join(LOCAL_DIR, 'docs/graph.json')
 
 pyroon = Pyroon()
 
-pyroon.addRoo('https://www.reddit.com/r/woahdude/comments/5juiaf/well_of_death/dbjddli/')
+pyroon.addRoo('https://www.reddit.com/r/woahdude/comments/5juiaf/well_of_death/dbjddli/', first_roo=True)
 pyroon.exportCytoscapeGraph(SAVE_PATH)
 
 pyroon.saveGraph('save.json') # Stored roo graph in form Pyroon can load and merge with other graphs
