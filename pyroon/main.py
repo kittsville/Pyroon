@@ -57,7 +57,7 @@ class Pyroon():
             file_name
         )
     
-    def addRoo(self, comment_url, limit=float('inf')):
+    def addRoo(self, comment_url, limit=float('inf'), first_roo=False):
         """
         Adds chain of connected roos
         """
@@ -118,9 +118,13 @@ class Pyroon():
                 'sub'     : str(comment.subreddit),
                 'url'     : 'https://reddit.com' + comment.permalink(fast=True),
                 'deleted' : comment_deleted,
+                'first'   : first_roo,
             }
             
             self.roos[comment_id] = roo
+            
+            if first_roo:
+                first_roo = False
             
             hyperlink = comment_soup.select_one('a')
             
