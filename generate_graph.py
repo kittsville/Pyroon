@@ -17,4 +17,4 @@ pyroon = Pyroon()
 pyroon.addRoo('https://www.reddit.com/r/woahdude/comments/5juiaf/well_of_death/dbjddli/')
 pyroon.exportCytoscapeGraph(SAVE_PATH)
 
-pyroon.saveRoo('save.json') # Stored roo graph in form Pyroon can load and merge with other graphs
+pyroon.saveGraph('save.json') # Stored roo graph in form Pyroon can load and merge with other graphs
