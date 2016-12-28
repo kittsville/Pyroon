@@ -62,7 +62,7 @@ $.ajax({
 				var firstRoo = cy.$('node[?first]');
 				
 				if (firstRoo) {
-					cy.fit(firstRoo, 150);
+					cy.fit(firstRoo, 350);
 				}
 			}
 			
