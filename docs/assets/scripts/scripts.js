@@ -58,6 +58,12 @@ $.ajax({
 				if (roo_node) {
 					cy.fit(roo_node, 100);
 				}
+			} else {
+				var firstRoo = cy.$('node[?first]');
+				
+				if (firstRoo) {
+					cy.fit(firstRoo, 150);
+				}
 			}
 			
 			delete progress;
