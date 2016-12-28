@@ -42,21 +42,23 @@ $.ajax({
 			style: '{{ graph_styles | strip | strip_newlines }}',
 		});
 		
-		progress.increment();
-		
-		cy.on('tap', 'node, edge', function(event) {	
-			window.open(this.data('url'));
-		});
-		
-		if(window.location.hash) {
-			var roo_node = cy.$(window.location.hash);
+		cy.ready(function(){
+			progress.increment();
 			
-			if (roo_node) {
-				cy.fit(roo_node, 100);
+			cy.on('tap', 'node, edge', function(event) {	
+				window.open(this.data('url'));
+			});
+			
+			if(window.location.hash) {
+				var roo_node = cy.$(window.location.hash);
+				
+				if (roo_node) {
+					cy.fit(roo_node, 100);
+				}
 			}
-		}
-		
-		delete progress;
-		document.getElementById('wrap').removeChild(document.getElementById('splash'));
+			
+			delete progress;
+			document.getElementById('wrap').removeChild(document.getElementById('splash'));
+		});
 	}
 });
