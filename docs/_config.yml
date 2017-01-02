@@ -2,6 +2,8 @@ permalink: /:title/
 creator: Kit Maywood
 twitter: kittsville
 markdown: kramdown
+url: https://pyroon.sci1.uk
+enforce_ssl: pyroon.sci1.uk
 kramdown:
   input: GFM
 sass:
